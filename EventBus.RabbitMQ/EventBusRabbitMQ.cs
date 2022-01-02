@@ -80,7 +80,7 @@ namespace EventBus.RabbitMQ
 
                 properties.DeliveryMode = 2;
 
-              //  consumerChannel.QueueDeclare(queue: GetSubName(eventName), durable: true, exclusive: false, autoDelete: false, arguments: null);
+                consumerChannel.QueueDeclare(queue: GetSubName(eventName), durable: true, exclusive: false, autoDelete: false, arguments: null);
 
                 consumerChannel.BasicPublish(exchange: eventBusConfig.DefaultTopicName, routingKey: eventName, mandatory: true, basicProperties: properties, body: body);
             });
@@ -133,12 +133,12 @@ namespace EventBus.RabbitMQ
             if (consumerChannel != null)
             {
                 var consumer = new EventingBasicConsumer(consumerChannel);
-                consumer.Received +=  Consumer_Received;
+                consumer.Received += Consumer_Received;
                 consumerChannel.BasicConsume(queue: GetSubName(eventName), autoAck: false, consumer: consumer);
             }
         }
 
-        private async void Consumer_Received(object sender, BasicDeliverEventArgs e)
+        private async  void Consumer_Received(object sender, BasicDeliverEventArgs e)
         {
             var eventName = e.RoutingKey;
 

@@ -83,7 +83,9 @@ namespace EventBus.Base.SubManagers
             return HasSubscriptionsForEvent(key);
         }
 
-        public bool HasSubscriptionsForEvent(string eventName) => _handlers[eventName].Any();
+        public bool HasSubscriptionsForEvent(string eventName) {
+               return _handlers.ContainsKey(eventName);
+        }
         
 
         public void RemoveSubscription<T, TH>()

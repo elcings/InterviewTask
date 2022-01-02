@@ -81,7 +81,7 @@ namespace EventBus.Base.Events
         public abstract void Publis(IntegrationEvent @event);
         public abstract void Subscribe<T, TH>() where T : IntegrationEvent where TH : IIntegrationEventHandler<T>;
 
-        public abstract void UnSubscribe<T, TH>() where T : IntegrationEvent where TH : IIntegrationEventHandler<T>
+        public abstract void UnSubscribe<T, TH>() where T : IntegrationEvent where TH : IIntegrationEventHandler<T>;
 
     }
 }
